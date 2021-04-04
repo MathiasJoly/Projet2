@@ -74,6 +74,6 @@ public class Emprunt
 	}
 
 	public String toString() 
-	{ return "Emprunt [id=" + id + ", membre=" + membre.toString() + ", livre=" + livre.toString() + ", dateEmprunt=" + dateEmprunt + ", dateRetour=" + dateRetour + "]";}
+	{ return "\nEmprunt [id=" + id + "\n membre=" + membre.toString() + " livre=" + livre.toString() + " dateEmprunt=" + dateEmprunt + "\n dateRetour=" + dateRetour + "]\n";}
 
 }

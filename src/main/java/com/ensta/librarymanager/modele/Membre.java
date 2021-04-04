@@ -95,7 +95,7 @@ public class Membre
 	}
 
 	public String toString() 
-	{ return "Membre [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email=" + email + ", telephone=" + telephone + ", abonnement=" + abonnement + "]";}
+	{ return "Membre [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email=" + email + ", telephone=" + telephone + ", abonnement=" + abonnement + "]\n";}
 
 }
 		

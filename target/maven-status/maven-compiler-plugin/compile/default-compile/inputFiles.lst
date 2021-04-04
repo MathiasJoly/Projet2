@@ -1,9 +1,12 @@
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/dao/EmpruntDao.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/dao/MembreDao.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/exception/DaoException.java
+/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/service/MembreServiceImpl.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/dao/LivreDaoImpl.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/dao/EmpruntDaoImpl.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/test/ModeleTest.java
+/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/exception/ServiceException.java
+/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/test/ServiceTest.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/modele/Emprunt.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/test/DaoTest.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/modele/Livre.java
@@ -12,7 +15,9 @@
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/persistence/ConnectionManager.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/modele/Abonnement.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/utils/FillDatabase.java
+/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/service/LivreServiceImpl.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/dao/LivreDao.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/service/LivreService.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/dao/MembreDaoImpl.java
 /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/modele/Membre.java
+/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/src/main/java/com/ensta/librarymanager/service/EmpruntServiceImpl.java

@@ -59,6 +59,6 @@ public class Livre
 	}
 
 	public String toString() 
-	{ return "Livre [id=" + id + ", titre=" + titre + ", auteur=" + auteur + ", isbn=" + isbn + "]";}
+	{ return "Livre [id=" + id + ", titre=" + titre + ", auteur=" + auteur + ", isbn=" + isbn + "]\n";}
 
 }

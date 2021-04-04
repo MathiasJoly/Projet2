@@ -164,7 +164,7 @@ public class EmpruntDaoImpl implements EmpruntDao
 		try {
 			connection = ConnectionManager.getConnection();
 			pS = connection.prepareStatement(SELECT_BY_MEMBRE);
-			pS.setInt(1, idMembre);
+			pS.setInt(1, idLivre);
 			rs = pS.executeQuery();
 			MembreDaoImpl mdao = MembreDaoImpl.getInstance();
 			LivreDaoImpl ldao = LivreDaoImpl.getInstance();
@@ -175,7 +175,7 @@ public class EmpruntDaoImpl implements EmpruntDao
 				Emprunt emprunt = new Emprunt();
 
 				idl = rs.getInt("idLivre"); 
-				Membre membre = mdao.getById(idm);
+				Membre membre = mdao.getById(idl);
 				Livre livre = ldao.getById(rs.getInt("idLivre"));
 
 				emprunt.setId(rs.getInt("id"));

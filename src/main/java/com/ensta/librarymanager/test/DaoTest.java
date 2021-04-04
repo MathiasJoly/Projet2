@@ -27,7 +27,7 @@ public class DaoTest
 		int countLivresApres = -1;
 		try (Connection connection = ConnectionManager.getConnection())
 		{
-			LivreDaoImpl dao = LivreDaoImpl.getInstance();
+			LivreDao dao = LivreDaoImpl.getInstance();
 			livre8 = dao.getById(8); // Recuperer le livre pour lequel id = 8
 			livresAvant = dao.getList(); // Lister tous les livres
 			countLivresAvant = dao.count(); // Compter le nombre de livres
@@ -69,7 +69,7 @@ public class DaoTest
 		int countMembresApres = -1;
 		try (Connection connection = ConnectionManager.getConnection())
 		{
-			MembreDaoImpl dao = MembreDaoImpl.getInstance();
+			MembreDao dao = MembreDaoImpl.getInstance();
 			membre4 = dao.getById(4);
 			membresAvant = dao.getList();
 			countMembresAvant = dao.count();
@@ -83,7 +83,7 @@ public class DaoTest
 		}
 		try (Connection connection = ConnectionManager.getConnection())
 		{
-			MembreDaoImpl dao = MembreDaoImpl.getInstance();
+			MembreDao dao = MembreDaoImpl.getInstance();
 			membresApres = dao.getList(); // Lister tous les membres
 			countMembresApres = dao.count(); // Compter le nombre de membres
 		}
@@ -93,7 +93,7 @@ public class DaoTest
 		}
 		try (Connection connection = ConnectionManager.getConnection())
 		{
-			MembreDaoImpl dao = MembreDaoImpl.getInstance();
+			MembreDao dao = MembreDaoImpl.getInstance();
 			membresApres = dao.getList(); // Lister tous les membres
 			countMembresApres = dao.count(); // Compter le nombre de membres
 		}
@@ -121,7 +121,8 @@ public class DaoTest
 		// Tests pour EmpruntDao
 		System.out.println();
 		System.out.println("EMPRUNT DAO TEST");
-		List<Emprunt> emprunts = new ArrayList<>();
+		List<Emprunt> empruntsAvant = new ArrayList<>();
+		List<Emprunt> empruntsApres = new ArrayList<>();
 		List<Emprunt> empruntsCourants = new ArrayList<>();
 		//List<Emprunt> empruntsMembre = new ArrayList<>();
 		Emprunt emprunt5 = new Emprunt();	
@@ -133,8 +134,8 @@ public class DaoTest
 		int countEmpruntsApres = -1;
 		try (Connection connection = ConnectionManager.getConnection())
 		{
-			EmpruntDaoImpl dao = EmpruntDaoImpl.getInstance();
-			emprunts = dao.getList(); // Lister tous les emprunts
+			EmpruntDao dao = EmpruntDaoImpl.getInstance();
+			empruntsAvant = dao.getList(); // Lister tous les emprunts
 			empruntsCourants = dao.getListCurrent(); // ... courants
 			//empruntsMembre = dao.getListCurrentByMembre(2); // ... pour le membre 2
 			emprunt5 = dao.getById(5); // Recuperer l'emprunt 5
@@ -146,10 +147,10 @@ public class DaoTest
 		}
 		System.out.println();
 		System.out.println("SELECT_ALL :");
-		System.out.println(emprunts.toString()); // Base de donnees avant
+		System.out.println(empruntsAvant.toString()); // Base de donnees avant
 		System.out.println();
 		System.out.println("COUNT :");
-		System.out.println(countEmpruntsAvant); // Nombre de livres apres
+		System.out.println(countEmpruntsAvant); // Nombre d'emprunts apres
 		System.out.println();
 		System.out.println("SELECT_CURRENT :");
 		System.out.println(empruntsCourants.toString()); 
@@ -164,11 +165,11 @@ public class DaoTest
 		*/
 		try (Connection connection = ConnectionManager.getConnection())
 		{
-			EmpruntDaoImpl dao = EmpruntDaoImpl.getInstance();
+			EmpruntDao dao = EmpruntDaoImpl.getInstance();
 			
 			dao.create(1,1,LocalDate.of(2019,03,11));
 			dao.update(emprunt6);
-			emprunts = dao.getList(); // Lister tous les emprunts
+			empruntsApres = dao.getList(); // Lister tous les emprunts
 			countEmpruntsApres = dao.count();
         	}
 		catch (DaoException | SQLException e)
@@ -177,10 +178,10 @@ public class DaoTest
 		}
 		System.out.println();
 		System.out.println("SELECT_ALL :");
-		System.out.println(emprunts.toString()); // Base de donnees apres
+		System.out.println(empruntsApres.toString()); // Base de donnees apres
 		System.out.println();
 		System.out.println("COUNT :");
-		System.out.println(countEmpruntsApres); // Nombre de livres apres
+		System.out.println(countEmpruntsApres); // Nombre d'emprunts apres
 		System.out.println();
 	}
 }
