@@ -1,4 +1,5 @@
 package com.ensta.librarymanager.service;
+/*
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,3 +20,4 @@ public interface EmpruntService {
 	public boolean isLivreDispo(int idLivre) throws ServiceException;
 	public boolean isEmpruntPossible(Membre membre) throws ServiceException ;
 }
+*/

@@ -2,10 +2,10 @@ package com.ensta.librarymanager.modele;
 
 public class Livre 
 {
-	int id;
-	String titre;
-	String auteur;
-	String isbn;
+	private int id;
+	private String titre;
+	private String auteur;
+	private String isbn;
 
 	public int getId() 
 	{

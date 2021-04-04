@@ -5,11 +5,11 @@ import java.time.LocalDate ;
 
 public class Emprunt 
 {
-	int id;
-	Membre membre;
-	Livre livre;
-	LocalDate dateEmprunt;
-	LocalDate dateRetour;
+	private int id;
+	private Membre membre;
+	private Livre livre;
+	private LocalDate dateEmprunt;
+	private LocalDate dateRetour;
 
 	public int getId() 
 	{

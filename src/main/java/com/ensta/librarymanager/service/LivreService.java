@@ -1,5 +1,5 @@
 package com.ensta.librarymanager.service;
-
+/*
 import java.util.List;
 
 import com.ensta.librarymanager.exception.ServiceException;
@@ -15,3 +15,4 @@ public interface LivreService {
 	public void delete(int id) throws ServiceException;
 	public int count() throws ServiceException;
 }
+*/
