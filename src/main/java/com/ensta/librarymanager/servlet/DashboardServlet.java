@@ -1,6 +1,6 @@
 package com.ensta.librarymanager.servlet;
 
-import java.io.IOException;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.WebServlet;
 
 import com.ensta.librarymanager.modele.*;
 import com.ensta.librarymanager.dao.*;
@@ -19,11 +20,17 @@ import com.ensta.librarymanager.service.*;
 import com.ensta.librarymanager.exception.*;
 import com.ensta.librarymanager.persistence.ConnectionManager;
 
+@WebServlet("/dasboard")
 public class DashboardServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		response.setContentType("text/html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/dashboard.jsp");
+		dispatcher.forward(request, response);
+	}
+		/*
 		String action = request.getServletPath();
 		switch (action) 
 		{
@@ -115,5 +122,6 @@ public class DashboardServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/dashboard.jsp");
 		dispatcher.forward(request, response);
 	}
+*/
 
 }

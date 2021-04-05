@@ -55,10 +55,34 @@ public class EmpruntServiceImpl implements EmpruntService
 	}
 
 	public List<Emprunt> getListCurrentByMembre(int idMembre) throws ServiceException
-	{ List<Emprunt> result = new ArrayList<>(); return result; }
+	{ 
+		List<Emprunt> result = new ArrayList<>();
+		EmpruntDao edao = EmpruntDaoImpl.getInstance();
+		try
+		{
+			result = edao.getListCurrentByMembre(idMembre);
+		}
+		catch (DaoException e)
+		{
+			System.out.println(e.getMessage());
+		};
+		return result; 
+	}
 
 	public List<Emprunt> getListCurrentByLivre(int idLivre) throws ServiceException
-	{ List<Emprunt> result = new ArrayList<>(); return result; }
+	{ 
+		List<Emprunt> result = new ArrayList<>();
+		EmpruntDao edao = EmpruntDaoImpl.getInstance();
+		try
+		{
+			result = edao.getListCurrentByLivre(idLivre);
+		}
+		catch (DaoException e)
+		{
+			System.out.println(e.getMessage());
+		};
+		return result; 
+	}
 
 	public Emprunt getById(int id) throws ServiceException
 	{
@@ -143,21 +167,22 @@ public class EmpruntServiceImpl implements EmpruntService
 		List<Emprunt> emprunts = new ArrayList<>();
 		try
 		{
-			emprunts = this.getListCurrent(); 
+			emprunts = this.getListCurrentByMembre(membre.getId()); 
 		}
 		catch (ServiceException e)
 		{
 			System.out.println(e.getMessage());
 		}
 		Membre emembre = new Membre();
+		Abonnement ab = membre.getAbonnement();
+		int count = 0;
 		for(Emprunt e : emprunts)
 		{
-			emembre = e.getMembre();
-			if (emembre.getId() == membre.getId()) 
-			{
-				if (emembre.getAbonnement() == Abonnement.BASIC) result = false;
-			};
-		} 
+			count = count + 1;
+		};
+		if (count >= 2 && ab == Abonnement.BASIC) result = false;
+		if (count >= 5 && ab == Abonnement.PREMIUM) result = false;
+		if (count >= 20 && ab == Abonnement.VIP) result = false;
 		return result;  }
 }
 

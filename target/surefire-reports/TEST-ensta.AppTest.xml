@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ensta.AppTest" time="0.063" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ensta.AppTest" time="0.039" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/target/surefire/surefirebooter14835865501957266772.jar /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/target/surefire 2021-04-05T01-09-50_186-jvmRun1 surefire7895432997223622634tmp surefire_013044647145486595979tmp"/>
+    <property name="sun.java.command" value="/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/target/surefire/surefirebooter2468531239118386906.jar /home/mathias/IN205/Project 2/Fichiers fournis/Projet2/target/surefire 2021-04-05T12-35-31_081-jvmRun1 surefire10585189962228453708tmp surefire_06041900626738433384tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/target/test-classes:/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/target/classes:/home/mathias/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/mathias/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/mathias/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/home/mathias/.m2/repository/javax/servlet/jsp/javax.servlet.jsp-api/2.3.1/javax.servlet.jsp-api-2.3.1.jar:/home/mathias/.m2/repository/jstl/jstl/1.2/jstl-1.2.jar:/home/mathias/.m2/repository/com/h2database/h2/1.4.197/h2-1.4.197.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -32,7 +32,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/target/surefire/surefirebooter14835865501957266772.jar"/>
+    <property name="surefire.real.class.path" value="/home/mathias/IN205/Project 2/Fichiers fournis/Projet2/target/surefire/surefirebooter2468531239118386906.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.10+9-Ubuntu-0ubuntu1.18.04"/>
     <property name="user.name" value="mathias"/>
@@ -57,5 +57,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="ensta.AppTest" time="0.001"/>
+  <testcase name="shouldAnswerWithTrue" classname="ensta.AppTest" time="0"/>
 </testsuite>

@@ -56,6 +56,8 @@ public class ServiceTest
 		System.out.println("SELECT_BY_ID :"); 
 		System.out.println(membre4.toString());
 		System.out.println();
+		System.out.println("Après des changements sur la base de données:");
+		System.out.println();
 		System.out.println("SELECT_ALL :");
 		System.out.println(membresApres.toString()); // Base de donnees apres
 		System.out.println();
@@ -103,6 +105,8 @@ public class ServiceTest
 		System.out.println("SELECT_BY_ID :"); 
 		System.out.println(livre8.toString());
 		System.out.println();
+		System.out.println("Après des changements sur la base de données:");		
+		System.out.println();
 		System.out.println("SELECT_ALL :");
 		System.out.println(livresApres.toString()); // Base de donnees apres
 		System.out.println();
@@ -115,7 +119,9 @@ public class ServiceTest
 		System.out.println("EMPRUNT SERVICE TEST");
 		List<Emprunt> empruntsAvant = new ArrayList<>();
 		List<Emprunt> empruntsApres = new ArrayList<>();
-		List<Emprunt> empruntsCourants = new ArrayList<>();
+		List<Emprunt> empruntsActuels = new ArrayList<>();
+		List<Emprunt> empruntsMembre = new ArrayList<>();
+		List<Emprunt> empruntsLivre = new ArrayList<>();
 		Emprunt emprunt5 = new Emprunt();
 		System.out.println();
 		int countEmpruntsAvant = -1;
@@ -125,7 +131,9 @@ public class ServiceTest
 			EmpruntService eserv = EmpruntServiceImpl.getInstance();
 			empruntsAvant = eserv.getList(); // Lister tous les emprunts
 			countEmpruntsAvant = eserv.count();
-			empruntsCourants = eserv.getListCurrent();
+			empruntsActuels = eserv.getListCurrent();
+			empruntsMembre = eserv.getListCurrentByMembre(5);
+			empruntsLivre = eserv.getListCurrentByLivre(2);
 			emprunt5 = eserv.getById(5); // Recuperer l'emprunt 5
         	}
 		catch (ServiceException e)
@@ -140,7 +148,13 @@ public class ServiceTest
 		System.out.println(countEmpruntsAvant); // Nombre d'emprunts apres
 		System.out.println();
 		System.out.println("SELECT_CURRENT :");
-		System.out.println(empruntsCourants.toString()); 
+		System.out.println(empruntsActuels.toString()); 
+		System.out.println();
+		System.out.println("SELECT_BY_MEMBRE :");
+		System.out.println(empruntsMembre.toString()); 
+		System.out.println();
+		System.out.println("SELECT_BY_LIVRE :");
+		System.out.println(empruntsLivre.toString()); 
 		System.out.println();
 		System.out.println("SELECT_BY_ID :");
 		System.out.println(emprunt5.toString()); 
@@ -157,6 +171,8 @@ public class ServiceTest
 		{
 			System.out.println(e);
 		}
+		System.out.println("Après des changements sur la base de données:");
+		System.out.println();
 		System.out.println("SELECT_ALL :");
 		System.out.println(empruntsApres.toString()); // Base de donnees avant
 		System.out.println();

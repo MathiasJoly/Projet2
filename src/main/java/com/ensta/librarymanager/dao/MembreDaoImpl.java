@@ -121,7 +121,7 @@ public class MembreDaoImpl implements MembreDao
         return membre;
     }
 
-    public int create(String nom, String prenom, String telephone, String adresse, String email ) throws DaoException {
+    public int create(String nom, String prenom, String adresse, String email, String telephone ) throws DaoException {
         ResultSet rs = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -131,9 +131,9 @@ public class MembreDaoImpl implements MembreDao
             preparedStatement = connection.prepareStatement(CREATE, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, nom);
             preparedStatement.setString(2, prenom);
-            preparedStatement.setString(3, telephone);
-            preparedStatement.setString(4, adresse);
-            preparedStatement.setString(5, email);
+            preparedStatement.setString(3, adresse);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, telephone);
             preparedStatement.setString(6, "BASIC");
             preparedStatement.executeUpdate();
             rs = preparedStatement.getGeneratedKeys();
@@ -179,9 +179,9 @@ public class MembreDaoImpl implements MembreDao
             preparedStatement = connection.prepareStatement(UPDATE);
             preparedStatement.setString(1, membre.getNom());
             preparedStatement.setString(2, membre.getPrenom());
-            preparedStatement.setString(3, membre.getTelephone());
-            preparedStatement.setString(4, membre.getAdresse());
-            preparedStatement.setString(5, membre.getEmail());
+            preparedStatement.setString(3, membre.getAdresse());
+            preparedStatement.setString(4, membre.getEmail());
+            preparedStatement.setString(5, membre.getTelephone());
             preparedStatement.setString(6, membre.getAbonnement().name());
 	    preparedStatement.setInt(7, membre.getId());
             preparedStatement.executeUpdate();

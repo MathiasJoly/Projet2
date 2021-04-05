@@ -28,8 +28,8 @@ public class EmpruntDaoImpl implements EmpruntDao
 
 	private static final String SELECT_ALL = "SELECT e.id AS id, idMembre, nom, prenom, email, telephone, abonnement, idLivre, titre auteur, isbn, dateEmprunt, dateRetour FROM emprunt AS e INNER JOIN membre ON membre.id = e.idMembre INNER JOIN livre ON livre.id = e.idLivre ORDER BY dateRetour DESC;";
 	private static final String SELECT_CURRENT = "SELECT e.id AS id, idMembre, nom, prenom, email, telephone, abonnement, idLivre, titre auteur, isbn, dateEmprunt, dateRetour FROM emprunt AS e INNER JOIN membre ON membre.id = e.idMembre INNER JOIN livre ON livre.id = e.idLivre WHERE dateRetour IS NULL;";
-	private static final String SELECT_BY_MEMBRE = "SELECT e.id AS id, idMembre, nom, prenom, email, telephone, abonnement, idLivre, titre auteur, isbn, dateEmprunt, dateRetour FROM emprunt AS e INNER JOIN membre ON membre.id = e.idMembre INNER JOIN livre ON livre.id = e.idLivre WHERE dateRetour IS NULL and membre.id = ?;";
-	private static final String SELECT_BY_LIVRE = "SELECT e.id AS id, idMembre, nom, prenom, email, telephone, abonnement, idLivre, titre auteur, isbn, dateEmprunt, dateRetour FROM emprunt AS e INNER JOIN membre ON membre.id = e.idMembre INNER JOIN livre ON livre.id = e.idLivre WHERE dateRetour IS NULL and livre.id = ?;";
+	private static final String SELECT_BY_MEMBRE = "SELECT e.id AS id, idMembre, nom, prenom, email, telephone, abonnement, idLivre, titre auteur, isbn, dateEmprunt, dateRetour FROM emprunt AS e INNER JOIN membre ON membre.id = e.idMembre INNER JOIN livre ON livre.id = e.idLivre WHERE dateRetour IS NULL and e.idLivre = ?;";
+	private static final String SELECT_BY_LIVRE = "SELECT e.id AS id, idMembre, nom, prenom, email, telephone, abonnement, idLivre, titre auteur, isbn, dateEmprunt, dateRetour FROM emprunt AS e INNER JOIN membre ON membre.id = e.idMembre INNER JOIN livre ON livre.id = e.idLivre WHERE dateRetour IS NULL and e.idLivre = ?;";
 	private static final String SELECT_BY_ID = "SELECT e.id AS id, idMembre, nom, prenom, email, telephone, abonnement, idLivre, titre auteur, isbn, dateEmprunt, dateRetour FROM emprunt AS e INNER JOIN membre ON membre.id = e.idMembre INNER JOIN livre ON livre.id = e.idLivre WHERE e.id = ?;";
 	private static final String CREATE = "INSERT INTO emprunt (idMembre, idLivre, dateEmprunt, dateRetour) VALUES (?, ?, ?, ?);";
 	private static final String UPDATE = "UPDATE emprunt SET idMembre=?, idLivre=?, dateEmprunt = ?, dateRetour = ? WHERE id=?;";
@@ -40,8 +40,8 @@ public class EmpruntDaoImpl implements EmpruntDao
 		List<Emprunt> result = new ArrayList<>();
 		try (Connection connection = ConnectionManager.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL)) {
 			ResultSet rs = preparedStatement.executeQuery();
-			MembreDaoImpl mdao = MembreDaoImpl.getInstance();
-			LivreDaoImpl ldao = LivreDaoImpl.getInstance();
+			MembreDao mdao = MembreDaoImpl.getInstance();
+			LivreDao ldao = LivreDaoImpl.getInstance();
 			java.util.Date retour = new java.util.Date();
 			while (rs.next()) 
 			{
@@ -77,8 +77,8 @@ public class EmpruntDaoImpl implements EmpruntDao
 		List<Emprunt> result = new ArrayList<>();
 		try (Connection connection = ConnectionManager.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CURRENT)) {
 			ResultSet rs = preparedStatement.executeQuery();
-			MembreDaoImpl mdao = MembreDaoImpl.getInstance();
-			LivreDaoImpl ldao = LivreDaoImpl.getInstance();
+			MembreDao mdao = MembreDaoImpl.getInstance();
+			LivreDao ldao = LivreDaoImpl.getInstance();
 			java.util.Date retour = new java.util.Date();
 			while (rs.next()) 
 			{
@@ -101,7 +101,7 @@ public class EmpruntDaoImpl implements EmpruntDao
 				{
 				emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
 				};
-			}
+			};
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
@@ -112,92 +112,40 @@ public class EmpruntDaoImpl implements EmpruntDao
 	public List<Emprunt> getListCurrentByMembre(int idMembre) throws DaoException
 	{
 		List<Emprunt> result = new ArrayList<>();
-		ResultSet rs = null;
-		Connection connection = null;
-		PreparedStatement pS = null;
+		List<Emprunt> current = new ArrayList<>();
 		try {
-			connection = ConnectionManager.getConnection();
-			pS = connection.prepareStatement(SELECT_BY_MEMBRE);
-			pS.setInt(1, idMembre);
-			rs = pS.executeQuery();
-			MembreDaoImpl mdao = MembreDaoImpl.getInstance();
-			LivreDaoImpl ldao = LivreDaoImpl.getInstance();
-			java.util.Date retour = new java.util.Date();
+			current = this.getListCurrent();
 			int idm = 0;
-			while (rs.next()) 
+			for(Emprunt emprunt : current)
 			{
-				Emprunt emprunt = new Emprunt();
-
-				idm = rs.getInt("idMembre"); 
-				Membre membre = mdao.getById(idm);
-				Livre livre = ldao.getById(rs.getInt("idLivre"));
-
-				emprunt.setId(rs.getInt("id"));
-				emprunt.setMembre(membre);
-				emprunt.setLivre(livre);
-				emprunt.setDateEmprunt(rs.getDate("dateEmprunt").toLocalDate());
-				retour = rs.getDate("dateRetour");
-				if(rs.wasNull())
-				{
-				emprunt.setDateRetour(null);
-				}
-				else
-				{
-				emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
-				};
+				idm = emprunt.getMembre().getId();
 				if (idm==idMembre) result.add(emprunt);
-			}
-		} catch (SQLException e) 
+			};
+		} 
+		catch (DaoException e) 
 		{
 			e.printStackTrace();
 		}
-		System.out.println(result.toString()+"\n");
 		return result;
 	}
 
 	public List<Emprunt> getListCurrentByLivre(int idLivre) throws DaoException
 	{
 		List<Emprunt> result = new ArrayList<>();
-		ResultSet rs = null;
-		Connection connection = null;
-		PreparedStatement pS = null;
+		List<Emprunt> current = new ArrayList<>();
 		try {
-			connection = ConnectionManager.getConnection();
-			pS = connection.prepareStatement(SELECT_BY_MEMBRE);
-			pS.setInt(1, idLivre);
-			rs = pS.executeQuery();
-			MembreDaoImpl mdao = MembreDaoImpl.getInstance();
-			LivreDaoImpl ldao = LivreDaoImpl.getInstance();
-			java.util.Date retour = new java.util.Date();
+			current = this.getListCurrent();
 			int idl = 0;
-			while (rs.next()) 
+			for(Emprunt emprunt : current)
 			{
-				Emprunt emprunt = new Emprunt();
-
-				idl = rs.getInt("idLivre"); 
-				Membre membre = mdao.getById(idl);
-				Livre livre = ldao.getById(rs.getInt("idLivre"));
-
-				emprunt.setId(rs.getInt("id"));
-				emprunt.setMembre(membre);
-				emprunt.setLivre(livre);
-				emprunt.setDateEmprunt(rs.getDate("dateEmprunt").toLocalDate());
-				retour = rs.getDate("dateRetour");
-				if(rs.wasNull())
-				{
-				emprunt.setDateRetour(null);
-				}
-				else
-				{
-				emprunt.setDateRetour(rs.getDate("dateRetour").toLocalDate());
-				};
+				idl = emprunt.getLivre().getId();
 				if (idl==idLivre) result.add(emprunt);
-			}
-		} catch (SQLException e) 
+			};
+		} 
+		catch (DaoException e) 
 		{
 			e.printStackTrace();
 		}
-		System.out.println(result.toString()+"\n");
 		return result;
 	}
 
@@ -212,8 +160,8 @@ public class EmpruntDaoImpl implements EmpruntDao
 			preparedStatement = connection.prepareStatement(SELECT_BY_ID);
 			preparedStatement.setInt(1, id);
 			rs = preparedStatement.executeQuery();
-			MembreDaoImpl mdao = MembreDaoImpl.getInstance();
-			LivreDaoImpl ldao = LivreDaoImpl.getInstance();
+			MembreDao mdao = MembreDaoImpl.getInstance();
+			LivreDao ldao = LivreDaoImpl.getInstance();
 			java.util.Date retour = new java.util.Date();
 			if (rs.next()) {
 				Membre membre = mdao.getById(rs.getInt("idMembre"));
